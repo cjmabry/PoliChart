@@ -53,20 +53,6 @@
                         <li><a href='https://github.com/imwilsonxu/fbone/blob/master/LICENSE'>Terms</a></li>
                         <li><a href='http://imwilsonxu.com'>Blog</a></li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                    {% if current_user.is_authenticated %}
-                        {% if current_user.is_admin() %}
-                        <li><a href="{{ url_for('admin.index') }}">{{ current_user.name }}</a></li>
-                        {% else %}
-                        <li><a href="{{ url_for('user.index') }}">{{ current_user.name }}</a></li>
-                        {% endif %}
-                        <li><a href="{{ url_for('settings.profile') }}">Settings</a></li>
-                        <li><a href="{{ url_for('frontend.logout') }}">Log out</a></li>
-                    {% else %}
-                        <li><a href="{{ url_for('frontend.signup') }}"><strong>Sign up</strong></a></li>
-                        <li><a href="{{ url_for('frontend.login') }}">Sign in</a></li>
-                    {% endif %}
-                    </ul>
                 </div>
             </div>
         </nav>

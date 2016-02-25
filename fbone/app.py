@@ -6,11 +6,8 @@ from flask import Flask, request, render_template
 from flask.ext.babel import Babel
 
 from .config import DefaultConfig
-from .user import User, user
-from .settings import settings
 from .frontend import frontend
 from .api import api
-from .admin import admin
 from .extensions import db, mail, cache, login_manager, oid
 from .utils import INSTANCE_FOLDER_PATH
 
@@ -20,10 +17,7 @@ __all__ = ['create_app']
 
 DEFAULT_BLUEPRINTS = (
     frontend,
-    user,
-    settings,
     api,
-    admin,
 )
 
 
