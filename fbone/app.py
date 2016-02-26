@@ -8,7 +8,7 @@ from flask.ext.babel import Babel
 from .config import DefaultConfig
 from .frontend import frontend
 from .api import api
-from .extensions import db, mail, cache, login_manager, oid
+from .extensions import db
 from .utils import INSTANCE_FOLDER_PATH
 
 
@@ -62,10 +62,9 @@ def configure_extensions(app):
     db.init_app(app)
 
     # flask-mail
-    mail.init_app(app)
 
     # flask-cache
-    cache.init_app(app)
+    # cache.init_app(app)
 
     # flask-babel
     babel = Babel(app)
@@ -76,16 +75,16 @@ def configure_extensions(app):
         return request.accept_languages.best_match(accept_languages)
 
     # flask-login
-    login_manager.login_view = 'frontend.login'
-    login_manager.refresh_view = 'frontend.reauth'
+    # login_manager.login_view = 'frontend.login'
+    # login_manager.refresh_view = 'frontend.reauth'
 
-    @login_manager.user_loader
-    def load_user(id):
-        return User.query.get(id)
-    login_manager.setup_app(app)
+    # @login_manager.user_loader
+    # def load_user(id):
+    #     return User.query.get(id)
+    # login_manager.setup_app(app)
 
     # flask-openid
-    oid.init_app(app)
+    # oid.init_app(app)
 
 
 def configure_blueprints(app, blueprints):
