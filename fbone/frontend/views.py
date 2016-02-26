@@ -28,13 +28,18 @@ def index():
     clinton_sum = 0
     sanders_sum = 0
 
+    data['states'] = []
+
     for state in states:
         if state.state != 'US':
+            data['states'].append(state)
             clinton_sum += int(state.clinton_percentage/100 * state.pledged_available)
             sanders_sum += int(state.sanders_percentage/100 * state.pledged_available)
 
-    data['sanders'] = sanders_sum
-    data['clinton'] = clinton_sum
+    data['projections'] = {}
+
+    data['projections']['clinton'] = clinton_sum
+    data['projections']['sanders'] = sanders_sum
 
     return render_template('index.html', data=data)
 
