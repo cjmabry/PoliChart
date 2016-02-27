@@ -20,7 +20,6 @@ def index():
 
     data = {}
 
-    populate_states()
     get_polls()
 
     states = models.State.query.all()
@@ -31,10 +30,10 @@ def index():
     data['states'] = []
 
     for state in states:
+        data['states'].append(state)    
         if state.state != 'US':
-            data['states'].append(state)
-            clinton_sum += int(state.clinton_percentage/100 * state.pledged_available)
-            sanders_sum += int(state.sanders_percentage/100 * state.pledged_available)
+            clinton_sum += int(state.clinton_percentage * state.pledged_available)
+            sanders_sum += int(state.sanders_percentage * state.pledged_available)
 
     data['projections'] = {}
 
