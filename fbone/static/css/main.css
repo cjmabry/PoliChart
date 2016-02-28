@@ -97,6 +97,11 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+.jumbotron h1 {
+  font-size: 52px;
+  margin-top: 0;
+}
+
 table.table {
   font-size: 12px;
 }
@@ -106,6 +111,19 @@ table.table {
   /*background: #fafafa;*/
 }
 
+.target-text {
+  text-align: center;
+  left: 0;
+  right: 0;
+  vertical-align: middle;
+  margin: auto;
+  bottom: 0;
+  top: 0;
+  position: absolute;
+  display: inline-block;
+  line-height: 40px;
+}
+
 .progress {
   position: relative;
   height: 40px;
@@ -113,12 +131,18 @@ table.table {
 
 .progress .target {
   height: 100%;
-  width: 3px;
+  width: 4px;
   background: #5cb85c;
   position: absolute;
   right: 0;
   left: 0;
   margin: auto;
+  opacity: 0.3;
+}
+
+.progress-config {
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
 
 /* ==========================================================================

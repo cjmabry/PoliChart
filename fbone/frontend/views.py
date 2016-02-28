@@ -33,15 +33,23 @@ def index():
     for state in states:
         data['states'].append(state)
         if state.state != 'US':
-            clinton_sum += int(state.clinton_percentage * state.pledged_available)
-            sanders_sum += int(state.sanders_percentage * state.pledged_available)
-            undecided_sum += int(state.pledged_available)
+            if state.clinton_pledged_delegates_results and state.sanders_pledged_delegates_results:
+                clinton_sum += int(state.clinton_pledged_delegates_results)
+                sanders_sum += int(state.clinton_pledged_delegates_results)
+            else:
+                clinton_sum += int(state.clinton_percentage * state.pledged_available)
+                sanders_sum += int(state.sanders_percentage * state.pledged_available)
+                undecided_sum += int(state.pledged_available)
 
     data['projections'] = {}
+    data['candidates'] = {}
 
     data['projections']['clinton'] = clinton_sum
     data['projections']['sanders'] = sanders_sum
     data['projections']['undecided'] = undecided_sum - (clinton_sum + sanders_sum)
+
+    data['candidates']['clinton'] = models.Candidate.query.filter_by(last_name='Clinton').first()
+    data['candidates']['sanders'] = models.Candidate.query.filter_by(last_name='Sanders').first()
 
     return render_template('index.html', data=data)
 

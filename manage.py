@@ -24,7 +24,7 @@ def initdb():
     db.drop_all()
     db.create_all()
     db.session.commit()
-    polling.populate_states()
+    polling.populate_db()
 
 manager.add_option('-c', '--config',
                    dest="config",

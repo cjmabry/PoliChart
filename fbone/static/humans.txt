@@ -2,12 +2,8 @@
 # The humans responsible & technology colophon
 
 # TEAM
-
-    Wilson -- Dev -- @imwilsonxu
-
-# THANKS
-
-    <name>
+    Built by Chris Mabry -- @cjmab28
+    Based on Flask Bone by Wilson -- Dev -- @imwilsonxu
 
 # TECHNOLOGY COLOPHON
 
