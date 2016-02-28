@@ -11,7 +11,7 @@ setup(
     description='Election projections, data visualization, and political rants.',
     author='Chris Mabry',
     author_email='cjmab28@gmail.com',
-    packages=["fbone"],
+    packages=["polichart"],
     include_package_data=True,
     zip_safe=False,
     install_requires=[
