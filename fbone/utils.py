@@ -9,7 +9,6 @@ import os
 
 from datetime import datetime
 
-
 # Instance folder path, make it independent.
 INSTANCE_FOLDER_PATH = os.path.join('/tmp', 'instance')
 
@@ -44,7 +43,6 @@ SEX_TYPE = {
 
 # Model
 STRING_LEN = 64
-
 
 def get_current_time():
     return datetime.utcnow()
