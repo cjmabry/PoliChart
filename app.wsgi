@@ -2,7 +2,7 @@
 
 import sys, os, pwd
 
-project = "fbone"
+project = "polichart"
 
 # Use instance folder, instead of env variables.
 # specify dev/production config

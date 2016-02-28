@@ -2,7 +2,7 @@
 
 from setuptools import setup
 
-project = "PoliChart"
+project = "polichart"
 
 setup(
     name=project,
