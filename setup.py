@@ -2,15 +2,15 @@
 
 from setuptools import setup
 
-project = "fbone"
+project = "PoliChart"
 
 setup(
     name=project,
     version='0.1',
-    url='https://github.com/imwilsonxu/fbone',
-    description='Fbone (Flask bone) is a Flask (Python microframework) template/bootstrap/boilerplate application.',
-    author='Wilson Xu',
-    author_email='imwilsonxu@gmail.com',
+    url='https://github.com/cjmabry/PoliChart',
+    description='Election projections, data visualization, and political rants.',
+    author='Chris Mabry',
+    author_email='cjmab28@gmail.com',
     packages=["fbone"],
     include_package_data=True,
     zip_safe=False,
@@ -32,11 +32,7 @@ setup(
     test_suite='tests',
     classifiers=[
         'Environment :: Web Environment',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
-        'Programming Language :: Python',
-        'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
-        'Topic :: Software Development :: Libraries'
+        'Programming Language :: Python'
     ]
 )

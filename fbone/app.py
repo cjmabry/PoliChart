@@ -17,7 +17,7 @@ __all__ = ['create_app']
 
 DEFAULT_BLUEPRINTS = (
     frontend,
-    api,
+    api
 )
 
 

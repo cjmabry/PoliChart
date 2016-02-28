@@ -10,7 +10,7 @@ from utils import get_current_time, get_current_date
 pollster = Pollster()
 
 def populate_db():
-    with open('states.csv', mode='r') as infile:
+    with open('data/states.csv', mode='r') as infile:
         reader = csv.reader(infile)
         mydict = {rows[0]: {'pledged':rows[1], 'unpledged':rows[2], 'date': rows[4]} for rows in reader}
 
@@ -45,7 +45,7 @@ def populate_db():
     get_results()
 
 def get_results():
-    with open('results.csv', mode='r') as infile:
+    with open('data/results.csv', mode='r') as infile:
         reader = csv.reader(infile)
         mydict = {rows[0]: {'clinton_pledged':rows[1], 'clinton_unpledged':rows[2], 'sanders_pledged':rows[3], 'sanders_unpledged':rows[4], 'clinton_percentage':rows[5], 'sanders_percentage':rows[6]} for rows in reader}
 
