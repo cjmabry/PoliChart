@@ -106,6 +106,21 @@ table.table {
   /*background: #fafafa;*/
 }
 
+.progress {
+  position: relative;
+  height: 40px;
+}
+
+.progress .target {
+  height: 100%;
+  width: 3px;
+  background: #5cb85c;
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+
 /* ==========================================================================
    Table Sort
    ========================================================================== */
@@ -141,12 +156,6 @@ table th.sort-up:after {
   border-bottom:none;
   border-width:4px 4px 0;
   }
-
-
-
-
-
-
 
 /* ==========================================================================
    Helper classes

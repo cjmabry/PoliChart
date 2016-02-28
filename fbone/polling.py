@@ -33,9 +33,9 @@ def populate_states():
             db.session.add(s)
             db.session.commit()
 
-    get_polls()
+    get_charts()
 
-def get_polls():
+def get_charts():
 
     for chart in pollster.charts(topic='2016-president-dem-primary'):
         state = chart.state

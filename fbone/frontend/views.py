@@ -20,7 +20,7 @@ def index():
 
     data = {}
 
-    get_polls()
+    get_charts()
 
     states = models.State.query.all()
 
