@@ -11,6 +11,7 @@ from datetime import datetime
 
 # Instance folder path, make it independent.
 INSTANCE_FOLDER_PATH = os.path.join('/var/www', 'instance')
+production.cfg
 
 ALLOWED_AVATAR_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
