@@ -10,7 +10,7 @@ import os
 from datetime import datetime
 
 # Instance folder path, make it independent.
-INSTANCE_FOLDER_PATH = os.path.join('/var/www', 'instance')
+INSTANCE_FOLDER_PATH = os.path.join('/var/www/polichart', 'instance')
 
 ALLOWED_AVATAR_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
