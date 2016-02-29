@@ -52,7 +52,3 @@ def index():
     data['candidates']['sanders'] = models.Candidate.query.filter_by(last_name='Sanders').first()
 
     return render_template('index.html', data=data)
-
-@frontend.route('/help')
-def help():
-    return render_template('frontend/footers/help.html', active="help")
