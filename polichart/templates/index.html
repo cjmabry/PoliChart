@@ -76,9 +76,9 @@
 <div class="row">
   <div class="col-md-12">
     <div class="well">
-      <p>As of now, Secretary Hillary Clinton is projected to receive <strong>{{ data.projections.clinton }}</strong> pledged delegates, while Senator Bernie Sanders is projected to receive <strong>{{ data.projections.sanders }}</strong> pledged delegates. Pledged delegates that have already been awarded are factored into this count.</p>
+      <p>As of now, Secretary Hillary Clinton is projected to receive <strong>{{ data.combined.clinton | int }}</strong> pledged delegates, while Senator Bernie Sanders is projected to receive <strong>{{ data.combined.sanders | int }}</strong> pledged delegates. Pledged delegates that have already been awarded are factored into this count.</p>
 
-      <p>The other <strong>{{ data.projections.undecided }}</strong> pledged delegates could go to either candidate, as there is not enough current polling in those states to make an accurate prediction at this time. Superdelegates - delegates who can choose who they support and change at any time - are not currently included in these projections.</p>
+      <p>The other <strong>{{ data.combined.undecided | int }}</strong> pledged delegates could go to either candidate, as there is not enough current polling in those states to make an accurate prediction at this time. Superdelegates - delegates who can choose who they support and change at any time - are not currently included in these projections.</p>
 
       <p><strong>2,382 delegates are required to win the nomination.</strong></p>
 
@@ -144,7 +144,6 @@
                     {{ state.sanders_percentage * 100 }}%
                   {% endif %}
                 </td>
-                <!-- <td>{{ 100 - (state.sanders_percentage + state.clinton_percentage) * 100}}%</td> -->
                 <td>
                   {% if state.clinton_percentage_results %}
                     {{ state.clinton_percentage_results * 100 }}%
@@ -154,14 +153,14 @@
                 </td>
                 <td>
                   {% if state.sanders_percentage_results %}
-                    {{ state.sanders_percentage_results * 100 }}%
+                    {{ (state.sanders_percentage_results * 100) }}%
                   {% else %}
                     -
                   {% endif %}
                 </td>
                 <td>{{ state.clinton_delegates | int }}</td>
                 <td>{{ state.sanders_delegates | int}}</td>
-                <td>{{ state.pledged_available - (state.sanders_delegates + state.clinton_delegates) | int}}</td>
+                <td>{{ state.pledged_available - (state.sanders_delegates + state.clinton_delegates)| int}}</td>
                 <td>
                   {% if state.clinton_pledged_delegates_results %}
                     {{ state.clinton_pledged_delegates_results | int }}
@@ -193,9 +192,9 @@
               <td>-</td>
               <!-- <td>-</td> -->
               <td>-</td>
-              <td><strong>{{ data.projections.clinton }}</strong></td>
-              <td><strong>{{ data.projections.sanders }}</strong></td>
-              <td><strong>{{ data.projections.undecided }}</strong></td>
+              <td><strong>{{ data.projections.clinton | int }}</strong></td>
+              <td><strong>{{ data.projections.sanders | int}}</strong></td>
+              <td><strong>{{ data.projections.undecided | int}}</strong></td>
               <td><strong>{{ data.candidates.clinton.pledged_delegates }}</strong></td>
               <td><strong>{{ data.candidates.sanders.pledged_delegates }}</strong></td>
               <td>-</td>

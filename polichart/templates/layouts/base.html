@@ -138,21 +138,21 @@
 
           progress_clinton.css('width',"{{ (data.candidates.clinton.pledged_delegates / 4763 * 100) | round(1) }}" + "%").attr('aria-valuenow',"{{ (data.candidates.clinton.pledged_delegates / 4763 * 100) | round(1) }}");
 
-          $(text_clinton).text('{{ (data.candidates.clinton.pledged_delegates) }} delegates');
+          $(text_clinton).text('{{ (data.candidates.clinton.pledged_delegates) }} pledged delegates');
 
           progress_sanders.css('width',"{{ (data.candidates.sanders.pledged_delegates / 4763 * 100) | round(1) }}" + "%").attr('aria-valuenow',"{{ (data.candidates.sanders.pledged_delegates / 4763 * 100) | round(1) }}");
 
-          $(text_sanders).text('{{ (data.candidates.sanders.pledged_delegates) }} delegates');
+          $(text_sanders).text('{{ (data.candidates.sanders.pledged_delegates) }} pledged delegates');
 
         } else {
 
           progress_clinton.css('width',"{{ (data.projections.clinton / 4763 * 100) | round(1) }}" + "%").attr('aria-valuenow',"{{ (data.projections.clinton / 4763 * 100) | round(1) }}");
 
-          $(text_clinton).text('{{ (data.projections.clinton) }} pledged delegates');
+          $(text_clinton).text('{{ (data.combined.clinton) | int }} pledged delegates');
 
           progress_sanders.css('width',"{{ (data.projections.sanders / 4763 * 100) | round(1) }}" + "%").attr('aria-valuenow',"{{ (data.projections.sanders / 4763 * 100) | round(1) }}");
 
-          $(text_sanders).text('{{ (data.projections.sanders) }} pledged delegates');
+          $(text_sanders).text('{{ (data.combined.sanders) | int }} pledged delegates');
 
         }
       });

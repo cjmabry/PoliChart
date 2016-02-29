@@ -90,20 +90,18 @@ def get_charts():
             update(state=state, clinton_percentage=clinton, sanders_percentage=sanders)
 
             if not models.State.query.filter(models.State.state==state).first():
-                state =  models.State(state=state, clinton_percentage = clinton, sanders_percentage = sanders, url = chart.url)
-                state.clinton_delegates = clinton * state.pledged_available
-                state.sanders_delegates = sanders * state.pledged_available
-                db.session.add(state)
+                s =  models.State(state=state, clinton_percentage = clinton, sanders_percentage = sanders, url = chart.url)
+                s.clinton_delegates = round(clinton * state.pledged_available,0)
+                s.sanders_delegates = round(sanders * state.pledged_available,0)
+                db.session.add(s)
                 db.session.commit()
 
             else:
                 state = models.State.query.filter(models.State.state==state).first()
-                state.clinton = clinton
-                state.sanders = sanders
                 state.clinton_percentage = clinton
                 state.sanders_percentage = sanders
-                state.clinton_delegates = clinton * state.pledged_available
-                state.sanders_delegates = sanders * state.pledged_available
+                state.clinton_delegates = round(clinton * state.pledged_available)
+                state.sanders_delegates = round(sanders * state.pledged_available)
                 state.url = chart.url
                 db.session.commit()
 
