@@ -9,11 +9,11 @@
 
 from flask.ext.testing import TestCase as Base, Twill
 
-from fbone import create_app
-from fbone.user import User, UserDetail, ADMIN, USER, ACTIVE
-from fbone.config import TestConfig
-from fbone.extensions import db
-from fbone.utils import MALE
+from polichart import create_app
+from polichart.user import User, UserDetail, ADMIN, USER, ACTIVE
+from polichart.config import TestConfig
+from polichart.extensions import db
+from polichart.utils import MALE
 
 
 class TestCase(Base):

@@ -2,9 +2,9 @@
 
 from flask.ext.script import Manager
 
-from fbone import create_app, polling
-from fbone.extensions import db
-from fbone.utils import MALE
+from polichart import create_app, polling
+from polichart.extensions import db
+from polichart.utils import MALE
 
 app = create_app()
 manager = Manager(app)

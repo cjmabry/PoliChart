@@ -5,14 +5,14 @@ include LICENSE
 
 # Including
 # Python source files, test/*.py will be automatically included.
-recursive-include fbone *.py
+recursive-include polichart *.py
 # Templates
-recursive-include fbone/templates *
+recursive-include polichart/templates *
 # Static files
-recursive-include fbone/static *
+recursive-include polichart/static *
 # Translations
-recursive-include fbone/translations *
+recursive-include polichart/translations *
 
 # Excluding
-recursive-exclude fbone *.pyc
+recursive-exclude polichart *.pyc
 recursive-exclude tests *.pyc
