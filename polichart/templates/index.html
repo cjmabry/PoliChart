@@ -88,7 +88,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <h3>The Data <small class='pull-right'>Updated automatically from <a href="http://elections.huffingtonpost.com/pollster#2016-primaries">HuffPost Pollster</a>.</small><h3>
+    <h3>The Data {% for s in data.states %}{% if s.state == 'IA' %}<small class='pull-right'>Awarded delegate counts updated {{ s.last_updated.strftime('%m/%d/%Y at %-I:%M:%S %p') }} UTC</small>{% endif %}{% endfor %}</small><h3>
 
     <div class="table-responsive">
 

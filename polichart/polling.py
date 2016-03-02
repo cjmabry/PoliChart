@@ -55,6 +55,7 @@ def get_results():
         for state, results in mydict.items():
             if models.State.query.filter_by(state=state).first():
                 s = models.State.query.filter_by(state=state).first()
+                s.last_updated = get_current_time()
                 s.clinton_pledged_delegates_results = int(results['clinton_pledged'])
                 s.sanders_pledged_delegates_results = int(results['sanders_pledged'])
                 s.clinton_unpledged_delegates_results = int(results['clinton_unpledged'])
