@@ -75,4 +75,4 @@ frontend = Blueprint('frontend', __name__)
 
 @frontend.route('/')
 def index():
-    return render_template('lhjj')
+    return render_template('layouts/bern-path.html')
