@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{% block title %}{{ page_title|default(_('PoliChart')) }}{% endblock %} - Bernie Sanders' Path to the Nomination</title>
+    <meta name="description" content="What does Bernie Sanders have to do to win the Democratic nomination? We did the math.">
+    <meta name="author" content="Chris Mabry">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="summary">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="PoliChart" />
+    <meta property="og:url" content="http://polichart.com/" />
+    <meta property="og:image" content="http://polichart.com/{{ url_for('static', filename='img/fb.png') }}" />
+    <meta property="og:description" content="What does Bernie Sanders have to do to win the Democratic nomination? We did the math." />
+
+    <link rel="Shortcut Icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+
+    {% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    {% endblock %}
+
+    {% block css_style %}
+    {% endblock %}
+
+    {% block js_top %}
+    <script src="{{ url_for('static', filename='js/vendor/modernizr-2.6.2.min.js') }}"></script>
+    {% endblock %}
+</head>
+<body class="bern-path">
+
+    <canvas class="canvas"></canvas>
+
+    {% include "macros/_ask_user_to_update_ie.html" %}
+
+    {% block topbar %}
+    <!-- <div class='container'>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">PoliChart</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href='#about'>About</a>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div> -->
+    <div class="container">
+      <nav>
+        <div class="logo pull-left">a <strong>PoliChart</strong> interactive</div>
+
+        <div class="social-share pull-right">
+
+          <a href="#" class="fb-icon"></a>
+
+          <a href="#" class="twitter-icon"></a>
+
+        </div>
+      </nav>
+    </div>
+    {% endblock %}
+
+    {% block flash_message %}
+        <div class="container-fluid">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+            <div class="container-fluid">
+                <div id='flash_message_container'>
+                    {% for category, msg in messages %}
+                        <div class="alert alert-{{ category }}">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {{ msg }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        {% endwith %}
+        </div>
+    {% endblock %}
+
+    {% block container %}
+
+      <div class="container-fluid">
+        {% block body %}
+
+          <div class="container">
+
+            <section class="intro text-center">
+
+              <div class="bern-path-logo"><h1>Bern Path</h1></div>
+
+              <div class="intro-copy">
+                <h4>What does Bernie Sanders need to do to win the Democratic nomination?</br></br>
+
+                <strong>We did the math.</strong></h4>
+              </div>
+
+              <a href="#scoreboard" class="glyphicon glyphicon-chevron-down more"></a>
+
+            </section>
+
+            <section class="scoreboard" id="scoreboard">
+
+              <div class="card">
+
+                <p>As of March 25, there have been <strong>2,126</strong> pledged delegates awarded - or <strong>47%</strong> of those available.</p>
+
+                <p><strong>1,899</strong> pledged delegates are up for grabs in the remaining contests.</p>
+
+              </div>
+
+              <div class="graph-wrapper">
+                <canvas class="score-graph" width="600" height="400"></canvas>
+                <div class="target-text">Target: 2,026 pledged delegates.</div>
+              </div>
+
+            </section>
+
+            <section class="target">
+
+              <div class="map">
+
+                <div class="card vertical-middle">
+
+                  <p>To finish with a pledged majority, Bernie needs to win <strong>58%</strong> of the remaining pledged delegates after March 15.</p>
+
+                </div>
+
+              </div>
+
+            </section>
+
+          </div>
+
+          <section class="current">
+
+            <div class="card">
+
+              <p>As of March 25, Bernie is <strong class="red">2% under</strong> his <strong>58%</strong> target.</p>
+
+            </div>
+
+            <div class="current-graph">
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="pull-left">
+                    <h4>Actual: 56% since March 15</h4>
+                    <p class="bar-delegates clinton"></p>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="pull-right text-right">
+                    <h4>Target: 58% by June 14</h4>
+                    <p class="bar-delegates sanders"></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="progress">
+                    <div class="progress-bar goal" role="progressbar" aria-valuenow="58" aria-valuemin="0" aria-valuemax="100" style="width: 58%;">
+                    </div>
+                    <div class="progress-bar actual" role="progressbar" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100" style="width: 56%;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </section>
+
+          <div class="container">
+
+            <section class="path-to-victory">
+
+              <div class="card">
+
+                <p>Based on demographics and previous results, Bernie's path to-victory will need to look something like this.</p>
+
+              </div>
+
+              <div class="table-responsive">
+
+                <!-- Table -->
+                <table class="table table-condensed table-striped table-hover table-bordered" id="state-data">
+                  <thead>
+                    <tr>
+                      <th colspan='1'>State</th>
+                      <th colspan='1'>Date</th>
+                      <th colspan='1'>Pledged Available</th>
+                      <th colspan='1'>Pledged Target</th>
+                      <th colspan='1'>Margin</th>
+                      <th colspan='1'>Lead</th>
+                    </tr>
+                    <tr>
+                      <td><strong>Alaska</strong></td>
+                      <td>3/26/2016</td>
+                      <td>16</td>
+                      <td>11</td>
+                      <td>+40%</td>
+                      <td>-294</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Hawaii</strong></td>
+                      <td>3/26/2016</td>
+                      <td>25</td>
+                      <td>16</td>
+                      <td>+30%</td>
+                      <td>-287</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Washington</strong></td>
+                      <td>3/26/2016</td>
+                      <td>101</td>
+                      <td>71</td>
+                      <td>+40%</td>
+                      <td>-246</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Wisconsin</strong></td>
+                      <td>4/5/2016</td>
+                      <td>86</td>
+                      <td>50</td>
+                      <td>+16%</td>
+                      <td>-232</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Wyoming</strong></td>
+                      <td>4/9/2016</td>
+                      <td>14</td>
+                      <td>8</td>
+                      <td>+20%</td>
+                      <td>-230</td>
+                    </tr>
+                    <tr>
+                      <td><strong>New York</strong></td>
+                      <td>4/19/2016</td>
+                      <td>247</td>
+                      <td>131</td>
+                      <td>+6%</td>
+                      <td>-215</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Connecticut</strong></td>
+                      <td>4/26/2016</td>
+                      <td>55</td>
+                      <td>34</td>
+                      <td>+24%</td>
+                      <td>-202</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Delaware</strong></td>
+                      <td>4/26/2016</td>
+                      <td>21</td>
+                      <td>10</td>
+                      <td>-2%</td>
+                      <td>-203</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Maryland</strong></td>
+                      <td>4/26/2016</td>
+                      <td>95</td>
+                      <td>47</td>
+                      <td>-2%</td>
+                      <td>-204</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Pennsylvania</strong></td>
+                      <td>4/26/2016</td>
+                      <td>189</td>
+                      <td>104</td>
+                      <td>+20%</td>
+                      <td>-185</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Rhode Island</strong></td>
+                      <td>4/26/2016</td>
+                      <td>24</td>
+                      <td>14</td>
+                      <td>+20%</td>
+                      <td>-181</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Indiana</strong></td>
+                      <td>5/3/2016</td>
+                      <td>83</td>
+                      <td>46</td>
+                      <td>+10%</td>
+                      <td>-172</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Guam</strong></td>
+                      <td>5/7/2016</td>
+                      <td>7</td>
+                      <td>4</td>
+                      <td>+2%</td>
+                      <td>-171</td>
+                    </tr>
+                    <tr>
+                      <td><strong>West Virginia</strong></td>
+                      <td>5/10/2016</td>
+                      <td>29</td>
+                      <td>17</td>
+                      <td>+14%</td>
+                      <td>-166</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Kentucky</strong></td>
+                      <td>5/17/2016</td>
+                      <td>55</td>
+                      <td>30</td>
+                      <td>+10%</td>
+                      <td>-161</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Oregon</strong></td>
+                      <td>5/17/2016</td>
+                      <td>61</td>
+                      <td>40</td>
+                      <td>+30%</td>
+                      <td>-142</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Virgin Islands</strong></td>
+                      <td>6/4/2016</td>
+                      <td>7</td>
+                      <td>4</td>
+                      <td>+4%</td>
+                      <td>-141</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Puerto Rico</strong></td>
+                      <td>6/5/2016</td>
+                      <td>60</td>
+                      <td>33</td>
+                      <td>+10%</td>
+                      <td>-135</td>
+                    </tr>
+                    <tr>
+                      <td><strong>California</strong></td>
+                      <td>6/7/2016</td>
+                      <td>475</td>
+                      <td>285</td>
+                      <td>+20%</td>
+                      <td>-40</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Montana</strong></td>
+                      <td>6/7/2016</td>
+                      <td>21</td>
+                      <td>12</td>
+                      <td>+14%</td>
+                      <td>-37</td>
+                    </tr>
+                    <tr>
+                      <td><strong>New Jersey</strong></td>
+                      <td>6/7/2016</td>
+                      <td>126</td>
+                      <td>76</td>
+                      <td>+20%</td>
+                      <td>-11</td>
+                    </tr>
+                    <tr>
+                      <td><strong>New Mexico</strong></td>
+                      <td>6/7/2016</td>
+                      <td>34</td>
+                      <td>19</td>
+                      <td>+10%</td>
+                      <td>-7</td>
+                    </tr>
+                    <tr>
+                      <td><strong>North Dakota</strong></td>
+                      <td>6/7/2016</td>
+                      <td>18</td>
+                      <td>12</td>
+                      <td>+30%</td>
+                      <td>-1</td>
+                    </tr>
+                    <tr>
+                      <td><strong>South Dakota</strong></td>
+                      <td>6/7/2016</td>
+                      <td>20</td>
+                      <td>13</td>
+                      <td>+30%</td>
+                      <td>+5</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Washington DC</strong></td>
+                      <td>6/14/2016</td>
+                      <td>30</td>
+                      <td>13</td>
+                      <td>-16%</td>
+                      <td>+2</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+
+            </section>
+
+          </div>
+
+          <div class="row">
+
+            <section class="conclusion">
+
+              <div class="card">
+
+                <p>While Bernie Sanders faces an uphill battle to win the Democratic nomination, the nomination process now moves into the most favorable stretch for the Vermont senator. Hillary Clinton’s lead will most definitely shrink until June 14, but the real question is by how much.</p>
+
+                <p>Should Bernie rougly meet the targets above, by no means an easy task, he will be on track to win a majority of pledged delegates.</p>
+
+                <p>Unpledged delegates, known by most as superdelegates, are not included in these calculations, as they can change their choice at any time before the convention, and will likely (although not certainly) support the candidate who receives a majority of pledged delegates.</p>
+
+                <p>Feedback? <strong><a href="#">Let us know.</a></strong></p>
+
+              </div>
+
+            </section>
+
+          </div>
+
+        {% endblock %}
+      </div>
+
+    {% endblock %}
+
+    <div class="container-fluid">
+
+      <div class="row">
+
+        <footer class="text-center">
+
+          <p>Share this story:</p>
+
+          <div class="social-share">
+
+            <a href="#" class="fb-icon"></a>
+            <a href="#" class="twitter-icon"></a>
+
+          </div>
+
+          <div class="footer-copy">
+
+            <p>This was a <strong>PoliChart</strong> interactive.</p>
+
+            <p><strong>PoliChart</strong> is a new way to look at politics. If you enjoyed this interactive, sign up to be notified when we launch.</p>
+
+            <p><small>(We promise not to spam)</small></p>
+
+          </div>
+
+          <input type="text" placeholder="you@email.com">
+
+          <button>Submit</button>
+
+        </footer>
+
+      </div>
+
+    </div>
+
+    {% block js_btm %}
+    <!--
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    -->
+    {% set jquery_path = url_for('static', filename='js/vendor/jquery-1.10.2.min.js') %}
+    <script>window.jQuery || document.write('<script src="{{ jquery_path }}"><\/script>')</script>
+    <script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>-->
+    <script src="{{ url_for('static', filename='js/vendor/bootstrap.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tablesort.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tablesort.date.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tablesort.number.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.smooth-scroll.js') }}"></script>
+    <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+    <script src="{{ url_for('static', filename='js/Chart.min.js') }}"></script>
+
+    <!-- Bar Chart -->
+    <script>
+
+      var ctx = document.getElementsByClassName("score-graph")[0].getContext("2d");
+      var data = {
+          labels: ["Sanders", "Clinton", "Remaining"],
+          datasets: [
+              {
+                  fillColor: "#317bbf",
+                  strokeColor: "#fff",
+                  barShowStroke : true,
+                  highlightFill: "#fff",
+                  data: [931, 1231, 1899]
+              }
+          ]
+      };
+
+      var options =
+        {
+          scaleFontSize: 18,
+          scaleFontColor: "#317bbf",
+          showScale: true,
+          scaleShowHorizontalLines: false,
+          scaleShowVerticalLines: false,
+          scaleShowLabels : false,
+          responsive: true,
+          scaleLineColor: "rgba(0,0,0,0)",
+          showTooltips: true
+        }
+      var myNewChart = new Chart(ctx).Bar(data, options);
+
+      console.log(myNewChart);
+
+    </script>
+
+    <script>
+
+    $('.more').smoothScroll();
+
+    var canvas = document.getElementsByClassName("canvas")[1];
+    var body = document.body;
+    var html = document.body;
+    var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+    var ctx = canvas.getContext("2d");
+    // canvas.width = window.innerWidth;
+    canvas.width = body.width;
+    canvas.height = height;
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    function handleResize() {
+      var body = document.body;
+      var w = window.innerWidth;
+      var h = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+      canvas.width = w;
+      canvas.height = h;
+
+      drawPath();
+    };
+
+    function drawPath() {
+
+      var points = [
+        [
+          Math.floor(window.innerWidth - ($('.bern-path-logo h1').position().left))+0.5,
+          Math.floor($('.bern-path-logo h1').position().top + $('.bern-path-logo h1').height())+0.5
+        ],
+        [
+          Math.floor(window.innerWidth - ($('.bern-path-logo h1').position().left)+100)+0.5,
+          Math.floor($('.bern-path-logo h1').position().top + $('.bern-path-logo h1').height())+0.5
+        ],
+        [
+          Math.floor(window.innerWidth - ($('.bern-path-logo h1').position().left)+100)+0.5,
+          Math.floor($('.more').position().top + $('.more').height()/2)+0.5
+        ],
+        [
+          Math.floor(window.innerWidth/2)+0.5,
+          Math.floor($('.more').position().top + $('.more').height()/2)+0.5
+        ],
+        [
+          Math.floor(window.innerWidth/2)+0.5,
+          Math.floor($('.scoreboard .card').position().top)+0.5
+        ],
+        [
+          Math.floor(window.innerWidth/2 + 290)+0.5,
+          Math.floor($('.scoreboard .card').position().top)+0.5
+        ],
+        [
+          Math.floor(window.innerWidth/2 + 290)+0.5,
+          Math.floor($('.graph-wrapper').position().top)+0.5
+        ],
+        [
+          Math.floor(window.innerWidth/2 - 300)+0.5,
+          Math.floor($('.graph-wrapper').position().top)+0.5
+        ],
+        [
+          Math.floor(window.innerWidth/2 - 300)+0.5,
+          Math.floor($('.graph-wrapper').position().top + $('.graph-wrapper').height() - 30)+0.5
+        ],
+        [
+          Math.floor(window.innerWidth/2 + 300)+0.5,
+          Math.floor($('.graph-wrapper').position().top + $('.graph-wrapper').height() - 30)+0.5
+        ],
+        [
+          Math.floor(window.innerWidth/2 + 300)+0.5,
+          Math.floor($('.target').position().top + 100)+0.5
+        ],
+        [
+          Math.floor(window.innerWidth/2)+0.5,
+          Math.floor($('.target').position().top + 100)+0.5
+        ],
+        [
+          Math.floor(window.innerWidth/2)+0.5,
+          Math.floor($('.conclusion').position().top + 100)+0.5
+        ]
+      ]
+
+      console.log(points);
+
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4]);
+
+      ctx.beginPath();
+      ctx.strokeStyle="#317bbf";
+      // ctx.moveTo((points[0][0]),(points[0][1]));
+
+      for (var coords in points) {
+        ctx.lineTo(points[coords][0],points[coords][1])
+      }
+
+      ctx.stroke();
+
+    };
+
+    </script>
+
+    {% endblock %}
+
+    {% block ga %}
+      {% include "macros/_google_analytics.html" %}
+    {% endblock %}
+</body>
+</html>

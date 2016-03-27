@@ -97,6 +97,12 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+.vertical-middle {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .jumbotron h1 {
   font-size: 52px;
   margin-top: 0;
@@ -144,6 +150,257 @@ table.table {
   margin-right: 20px;
   margin-bottom: 20px;
 }
+
+/* ==========================================================================
+   Bern Path
+   ========================================================================== */
+
+body, html {
+  min-height: 100%;
+  position: relative;
+}
+
+.canvas {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -9;
+}
+
+.bern-path nav {
+  padding-top: 20px;
+}
+
+.social-share {
+  display: block;
+  margin: auto;
+  width: 85px;
+  height:35px;
+  margin-bottom: 20px;
+  transition: 0.25s;
+}
+
+.social-share .fb-icon {
+  display: block;
+  width: 35px;
+  height: 35px;
+  background: url('../img/fb_icon.svg');
+  float:left;
+}
+
+.social-share .twitter-icon {
+  display: block;
+  width: 35px;
+  height: 35px;
+  background: url('../img/twitter_icon.svg');
+  float: right;
+}
+
+footer .social-share .fb-icon {
+  background: url('../img/fb_icon_white.svg');
+}
+
+footer .social-share .twitter-icon {
+  background: url('../img/twitter_icon_white.svg');
+}
+
+.social-share a {
+  opacity: 1;
+  transition: 0.25s;
+}
+
+.social-share a:hover {
+  opacity: 0.75;
+}
+
+.bern-path {
+    border-top: 5px solid #317bbf;
+    color: #317bbf;
+    -webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+}
+
+.bern-path .logo {
+  font-weight: 300;
+  color: #317bbf;
+  font-size: 18px;
+}
+
+.bern-path .intro {
+  height: 500px;
+}
+
+.bern-path .card {
+  text-align: center;
+  font-size: 18px;
+  background: white;
+  border: 2px solid #317bbf;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px 20px 10px 20px;
+  position: relative;
+  box-shadow: -8px 8px 0 rgba(49,123,191,0.3);
+}
+
+.bern-path .bern-path-logo {
+  background: url('../img/logo.svg') no-repeat;
+  max-width: 400px;
+  height: 78px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: auto;
+}
+
+.bern-path .intro-copy {
+  max-width: 400px;
+  margin: 70px auto;
+}
+
+.bern-path .more {
+  font-size: 3em;
+  transition: 0.25s;
+}
+
+.bern-path .more:hover, .bern-path .more:active, .bern-path .more:focus {
+  text-decoration: none;
+}
+
+.bern-path .score-graph {
+  width: 600px;
+  height: 400px;
+  margin: auto;
+  display: block;
+}
+
+.bern-path .graph-wrapper {
+  position: relative;
+  max-width: 600px;
+  max-height: 400px;
+  margin: auto;
+  pointer-events: none;
+}
+
+.bern-path .graph-wrapper .target-text {
+  position: absolute;
+  text-align: left;
+  top:-40px;
+  left: 0;
+  pointer-events: none;
+}
+
+.bern-path .map {
+  height: 500px;
+  background: url("../img/map.svg") no-repeat;
+  background-position: center;
+}
+
+.bern-path .red {
+  color: #f55b5b;
+}
+
+.bern-path .progress {
+  height: 150px;
+  background: #317bbf;
+  border: 1px dashed white;
+  box-shadow: none;
+
+}
+
+.bern-path .progress-bar {
+  box-shadow: none;
+  position: absolute;
+  background: white;
+  background: rgba(255,255,255,0.4);
+}
+
+.bern-path .progress-bar.goal {
+  border-right: 1px dashed #fff;
+}
+
+.bern-path .scoreboard .card {
+  margin-bottom: 60px;
+}
+
+.bern-path .map .card {
+  transform: translateY(-70%);
+}
+
+.bern-path table {
+  max-width: 800px;
+  margin: auto;
+  border: 1px solid #317bbf;
+  font-size: 16px;
+  text-align: center;
+  box-shadow: -8px 8px 0 rgba(49,123,191,0.3);
+  background: white;
+}
+
+.bern-path table th {
+  text-align: center;
+  background: transparent;
+}
+
+.bern-path table tr > td {
+  border: 1px dashed #317bbf;
+  text-align: center;
+}
+
+.bern-path table tr td:first-child {
+  background: #317bbf;
+  color: white;
+  text-align: center;
+  border: 1px dashed rgba(255,255,255, 0.2);
+}
+
+.bern-path section, .bern-path footer {
+  padding: 50px 0;
+}
+
+.bern-path .conclusion {
+  background: url('../img/dash-bg.png');
+  padding: 20px;
+}
+
+.bern-path .current {
+  padding: 15px;
+}
+
+.bern-path .conclusion .card {
+  max-width: 600px;
+}
+
+.bern-path footer {
+  background: #317bbf;
+  color: white;
+  font-size: 18px;
+}
+
+.bern-path .footer-copy {
+  max-width: 500px;
+  margin: 50px auto;
+}
+
+.bern-path footer button {
+  border: 0;
+  background: #19dd7b;
+  color: white;
+  font-weight: bolder;
+  padding: 15px;
+  box-sizing: border-box;
+  transition: 0.25s;
+}
+
+.bern-path footer button:hover {
+  background: #15C16B;
+}
+
+.bern-path footer input {
+  padding: 15px;
+  box-sizing: border-box;
+  border: 0;
+}
+
 
 /* ==========================================================================
    Table Sort

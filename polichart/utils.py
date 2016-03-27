@@ -12,8 +12,8 @@ from datetime import datetime
 os.environ['PYTHON_EGG_CACHE'] = '/tmp'
 
 # Instance folder path, make it independent.
-INSTANCE_FOLDER_PATH = os.path.join('/var/www/polichart', 'instance')
-# INSTANCE_FOLDER_PATH = os.path.join('/tmp', 'instance')
+# INSTANCE_FOLDER_PATH = os.path.join('/var/www/polichart', 'instance')
+INSTANCE_FOLDER_PATH = os.path.join('/tmp', 'instance')
 
 ALLOWED_AVATAR_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
