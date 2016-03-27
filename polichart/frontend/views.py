@@ -14,8 +14,9 @@ from ..polling import *
 
 frontend = Blueprint('frontend', __name__)
 
-# @frontend.route('/')
-# def index():
+@frontend.route('/')
+def index():
+    return redirect(url_for('frontend.bern'))
 #     current_app.logger.debug('debug')
 #
 #     data = {}
@@ -73,6 +74,6 @@ frontend = Blueprint('frontend', __name__)
 #
 #     return render_template('index.html', data=data)
 
-@frontend.route('/')
-def index():
+@frontend.route('/interactives/bern-path')
+def bern():
     return render_template('layouts/bern-path.html')
