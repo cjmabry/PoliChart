@@ -36,7 +36,7 @@ def index():
 
     data['states'] = []
 
-    # for state in states:
+    for state in states:
         data['states'].append(state)
         if state.state != 'US':
             clinton_projected += round(state.clinton_percentage * (state.pledged_available), 0)
