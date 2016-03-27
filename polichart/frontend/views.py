@@ -74,5 +74,5 @@ frontend = Blueprint('frontend', __name__)
 #     return render_template('index.html', data=data)
 
 @frontend.route('/')
-def bernPath():
+def index():
     return render_template('layouts/bern-path.html')
