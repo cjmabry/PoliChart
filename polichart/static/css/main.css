@@ -339,6 +339,10 @@ footer .social-share .reddit-icon {
   color: #f55b5b;
 }
 
+.bern-path .green {
+  color: #19dd7b;
+}
+
 .bern-path .progress {
   height: 150px;
   background: #317bbf;
@@ -357,13 +361,19 @@ footer .social-share .reddit-icon {
 }
 
 .bern-path .progress-bar.goal {
-  border-right: 1px dashed #fff;
+  border-right: 5px solid #19dd7b;
 }
 
 .bern-path .progress .progress-actual {
   position: absolute;
-  right:20px;
-  bottom: 10px;
+  left:20px;
+}
+
+.bern-path .progress .progress-actual h4 {
+  font-size: 100px;
+  font-weight: bolder;
+  line-height: 150px;
+  margin: 0;
 }
 
 .bern-path .progress .progress-target {
@@ -436,6 +446,11 @@ footer .social-share .reddit-icon {
   background: #317bbf;
   color: white;
   font-size: 18px;
+}
+
+.bern-path footer a {
+  color: white;
+  /*text-decoration: underline;*/
 }
 
 .bern-path .footer-copy {
