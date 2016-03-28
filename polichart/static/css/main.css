@@ -174,26 +174,39 @@ body, html {
 .social-share {
   display: block;
   margin: auto;
-  width: 85px;
   height:35px;
-  margin-bottom: 20px;
   transition: 0.25s;
 }
 
+.social-share .share-text {
+  display: inline-block;
+  height: 35px;
+  vertical-align: top;
+  line-height: 35px;
+  margin-right: 10px;
+}
+
 .social-share .fb-icon {
-  display: block;
   width: 35px;
   height: 35px;
   background: url('../img/fb_icon.svg');
-  float:left;
+  display: inline-block;
+  margin-right: 7px;
 }
 
 .social-share .twitter-icon {
-  display: block;
   width: 35px;
   height: 35px;
   background: url('../img/twitter_icon.svg');
-  float: right;
+  display: inline-block;
+  margin-right: 7px;
+}
+
+.social-share .reddit-icon {
+  width: 35px;
+  height: 35px;
+  background: url('../img/reddit_icon.svg');
+  display: inline-block;
 }
 
 footer .social-share .fb-icon {
@@ -202,6 +215,10 @@ footer .social-share .fb-icon {
 
 footer .social-share .twitter-icon {
   background: url('../img/twitter_icon_white.svg');
+}
+
+footer .social-share .reddit-icon {
+  background: url('../img/reddit_icon_white.svg');
 }
 
 .social-share a {
@@ -224,6 +241,16 @@ footer .social-share .twitter-icon {
   font-weight: 300;
   color: #317bbf;
   font-size: 18px;
+}
+
+.bern-path .updated {
+  font-size: 12px;
+  padding-top: 30px;
+  text-align: center;
+  top: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
 }
 
 .bern-path .intro {
@@ -260,6 +287,11 @@ footer .social-share .twitter-icon {
 .bern-path .more {
   font-size: 3em;
   transition: 0.25s;
+  text-shadow: 0px 4px 0 rgba(49,123,191,0.3);
+}
+
+.bern-path .more:hover {
+  text-shadow: 0 8px 0 rgba(49,123,191,0.3);
 }
 
 .bern-path .more:hover, .bern-path .more:active, .bern-path .more:focus {
@@ -267,7 +299,7 @@ footer .social-share .twitter-icon {
 }
 
 .bern-path .score-graph {
-  width: 600px;
+  width: 550px;
   height: 400px;
   margin: auto;
   display: block;
@@ -275,7 +307,7 @@ footer .social-share .twitter-icon {
 
 .bern-path .graph-wrapper {
   position: relative;
-  max-width: 600px;
+  max-width: 550px;
   max-height: 400px;
   margin: auto;
   pointer-events: none;
@@ -287,6 +319,14 @@ footer .social-share .twitter-icon {
   top:-40px;
   left: 0;
   pointer-events: none;
+}
+
+.bern-path .score-totals {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  color: white;
+  font-size: 20px;
 }
 
 .bern-path .map {
@@ -310,12 +350,28 @@ footer .social-share .twitter-icon {
 .bern-path .progress-bar {
   box-shadow: none;
   position: absolute;
-  background: white;
+}
+
+.bern-path .progress-bar.actual {
   background: rgba(255,255,255,0.4);
 }
 
 .bern-path .progress-bar.goal {
   border-right: 1px dashed #fff;
+}
+
+.bern-path .progress .progress-actual {
+  position: absolute;
+  right:20px;
+  bottom: 10px;
+}
+
+.bern-path .progress .progress-target {
+  position: absolute;
+  left: 59%;
+  color: white;
+  z-index: 9999;
+  bottom: 10px;
 }
 
 .bern-path .scoreboard .card {
@@ -337,6 +393,10 @@ footer .social-share .twitter-icon {
   margin-bottom: 10px;
 }
 
+.bern-path table tr:first-child {
+  border-bottom: 1px solid #317bbf;
+}
+
 .bern-path table th {
   text-align: center;
   background: transparent;
@@ -351,6 +411,7 @@ footer .social-share .twitter-icon {
   background: #317bbf;
   color: white;
   text-align: center;
+  border-bottom: 1px solid #317bbf;
   border: 1px dashed rgba(255,255,255, 0.2);
 }
 
@@ -382,7 +443,13 @@ footer .social-share .twitter-icon {
   margin: 50px auto;
 }
 
-.bern-path footer button {
+.bern-path footer input[type='email'] {
+  padding: 15px;
+  box-sizing: border-box;
+  border: 0;
+}
+
+.bern-path footer input[type='submit'] {
   border: 0;
   background: #19dd7b;
   color: white;
@@ -392,16 +459,52 @@ footer .social-share .twitter-icon {
   transition: 0.25s;
 }
 
-.bern-path footer button:hover {
+.bern-path footer input[type='submit']:hover {
   background: #15C16B;
 }
 
-.bern-path footer input {
-  padding: 15px;
-  box-sizing: border-box;
-  border: 0;
+.bern-path footer .mc-field-group {
+  display: inline-block;
 }
 
+#mc_embed_signup div.mce_inline_error {
+  display: none !important;
+}
+
+#mc_embed_signup div#mce-responses {
+  width: 600px;
+  margin: 40px auto;
+}
+
+@media screen and (max-width: 640px) {
+  .bern-path .updated {
+    top: 20px;
+    left: 15px;
+    position: absolute;
+    right: initial;
+    font-size: 11px;
+  }
+
+  .bern-path .score-totals {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .bern-path .share-text {
+    display: none;
+  }
+
+  .social-share .fb-icon, .social-share .twitter-icon, .social-share .reddit-icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .bern-path .score-totals {
+    font-size: 12px;
+  }
+
+}
 
 /* ==========================================================================
    Table Sort
