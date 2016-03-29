@@ -404,7 +404,7 @@ footer .social-share .reddit-icon {
 }
 
 .bern-path table tr:first-child {
-  border-bottom: 1px solid #317bbf;
+  /*border-bottom: 1px solid #317bbf;*/
 }
 
 .bern-path table th {
@@ -421,12 +421,20 @@ footer .social-share .reddit-icon {
   background: #317bbf;
   color: white;
   text-align: center;
-  border-bottom: 1px solid #317bbf;
   border: 1px dashed rgba(255,255,255, 0.2);
 }
 
+.bern-path table tr:nth-child(even) {
+    background-color: rgba(49,123,191,0.1);
+}
+
+.bern-path table tr:nth-child(2) {
+    border-bottom: 1px solid #317bbf;
+    background-color: white;
+}
+
 .bern-path section, .bern-path footer {
-  padding: 50px 0;
+    padding: 50px 0;
 }
 
 .bern-path .conclusion {
