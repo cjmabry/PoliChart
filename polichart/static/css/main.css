@@ -245,7 +245,8 @@ footer .social-share .reddit-icon {
 
 .bern-path .updated {
   font-size: 12px;
-  padding-top: 30px;
+  width: 300px;
+  margin: 30px auto;
   text-align: center;
   top: 0;
   left: 0;
@@ -459,6 +460,14 @@ footer .social-share .reddit-icon {
 .bern-path footer a {
   color: white;
   /*text-decoration: underline;*/
+}
+
+.social-follow {
+  margin: 20px;
+}
+
+.social-follow iframe {
+  vertical-align: middle;
 }
 
 .bern-path .footer-copy {

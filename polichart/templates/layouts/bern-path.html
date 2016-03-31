@@ -55,6 +55,23 @@
      }(document, 'script', 'facebook-jssdk'));
   </script>
 
+  <script>window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+
+    return t;
+  }(document, "script", "twitter-wjs"));</script>
+
     <canvas class="canvas"></canvas>
 
     {% include "macros/_ask_user_to_update_ie.html" %}
@@ -76,7 +93,7 @@
 
           <a class="twitter-icon" href="https://twitter.com/intent/tweet?text=What%20does%20Bernie%20Sanders%20need%20to%20do%20to%20win%20the%20Democratic%20nomination%3F%20We%20did%20the%20math.%20http%3A%2F%2Fpolichart.com%2Finteractives%2Fbern-path%20via%20%40PoliChart"></a>
 
-          <a class="reddit-icon" href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false"></a>
+        <a target="_blank" data-social-network='Reddit' data-social-action='Share' data-social-target='http://polichart.com/interactives/bern-path' class="reddit-icon" href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false"></a>
 
         </div>
       </nav>
@@ -615,7 +632,21 @@
 
             <a href="#" class="fb-icon"></a>
             <a class="twitter-icon" href="https://twitter.com/intent/tweet?text=What%20does%20Bernie%20Sanders%20need%20to%20do%20to%20win%20the%20Democratic%20nomination%3F%20We%20did%20the%20math.%20http%3A%2F%2Fpolichart.com%2Finteractives%2Fbern-path%20via%20%40PoliChart"></a>
-            <a class="reddit-icon" href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false"></a>
+            <a target="_blank" data-social-network='Reddit' data-social-action='Share' data-social-target='http://polichart.com/interactives/bern-path' class="reddit-icon" href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false"></a>
+
+          </div>
+
+          <div class="social-follow">
+
+            <a class="twitter-follow-button" href="https://twitter.com/PoliChart" data-size="small" data-show-count="false">
+            Follow @PoliChart</a>
+
+            <div class="fb-like"
+          		data-href="https://www.facebook.com/PoliChart"
+          		data-layout="button"
+          		data-action="like"
+          		data-show-faces="false">
+          	</div>
 
           </div>
 
@@ -707,8 +738,6 @@
         }
       var myNewChart = new Chart(ctx).Bar(data, options);
 
-      console.log(myNewChart);
-
     </script>
 
     <script>
@@ -794,8 +823,6 @@
         ]
       ]
 
-      console.log(points);
-
       ctx.lineWidth = 1;
       ctx.setLineDash([4]);
 
@@ -814,9 +841,34 @@
     $('.fb-icon').on('click', function () {
       FB.ui({
         method: 'share',
-        href: 'http://polichart.com/interactives/bern-path',
-      }, function(response){});
+        href: 'http://example.com/',
+      }, function(response){
+
+        ga('send', {
+          hitType: 'social',
+          socialNetwork: 'Facebook',
+          socialAction: 'Share',
+          socialTarget: 'http://polichart.com/interactives/bern-path',
+        });
+
+      });
     });
+
+    twttr.ready(
+      function (twttr) {
+        twttr.events.bind(
+          'tweet',
+          function (ev) {
+            ga('send', {
+              hitType: 'social',
+              socialNetwork: 'Twitter',
+              socialAction: 'Tweet',
+              socialTarget: 'http://polichart.com/interactives/bern-path',
+            });
+          }
+        );
+        }
+      );
 
     </script>
 

@@ -5,6 +5,9 @@
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-74403665-1', 'auto');
+  ga('require', 'autotrack');
+  ga('require', 'linkid');
   ga('send', 'pageview');
 
 </script>
+<script async src='{{ url_for('static', filename='js/autotrack.js') }}'></script>
