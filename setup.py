@@ -6,7 +6,7 @@ project = "polichart"
 
 setup(
     name=project,
-    version='0.2',
+    version='0.1',
     url='https://github.com/cjmabry/PoliChart',
     description='Election projections, data visualization, and political rants.',
     author='Chris Mabry',
