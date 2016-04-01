@@ -266,11 +266,38 @@
     <!-- Bar Chart -->
     <script>
 
+    var hasBeenScrolled = false;
+
+    function isScrolledIntoView(elem)
+    {
+        var docViewTop = $(window).scrollTop();
+        var docViewBottom = docViewTop + $(window).height();
+        var elemTop = $(elem).offset().top;
+        var elemBottom = elemTop + $(elem).height();
+        return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom) && (elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+    }
+
+    $(window).scroll(function() {
+        if(isScrolledIntoView($('#video')))
+        {
+          if(hasBeenScrolled == false) {
+            hasBeenScrolled = true;
+
+            $("#video")[0].src += "?autoplay=1";
+            ev.preventDefault();
+          }
+        }
+    });
+
     $(document).ready(function() {
       $('.more').on('click', function(ev) {
 
-        $("#video")[0].src += "?autoplay=1";
-        ev.preventDefault();
+        if(hasBeenScrolled == false) {
+          hasBeenScrolled = true;
+
+          $("#video")[0].src += "?autoplay=1";
+          ev.preventDefault();
+        }
 
       });
       });
