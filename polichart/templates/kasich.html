@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{% block title %}{{ page_title|default(_('PoliChart')) }}{% endblock %} - John Kasich' Path to the Nomination</title>
+    <meta name="description" content="What does John Kasich have to do to win the Republican nomination? We did the math.">
+    <meta name="author" content="Chris Mabry">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="summary">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="PoliChart" />
+    <meta property="og:url" content="http://polichart.com/interactives/kasich-path" />
+
+    <meta property="og:description" content="What does John Kasich have to do to win the Republican nomination? We did the math." />
+
+    <link rel="Shortcut Icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+
+    {% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    {% endblock %}
+
+    {% block css_style %}
+    {% endblock %}
+
+    {% block js_top %}
+    <script src="{{ url_for('static', filename='js/vendor/modernizr-2.6.2.min.js') }}"></script>
+    {% endblock %}
+</head>
+<body class="bern-path kasich">
+
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1601973760125447',
+        xfbml      : true,
+        version    : 'v2.5'
+      });
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <script>window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+
+    return t;
+  }(document, "script", "twitter-wjs"));</script>
+
+    <canvas class="canvas"></canvas>
+
+    {% include "macros/_ask_user_to_update_ie.html" %}
+
+    {% block topbar %}
+    <div class="container">
+      <nav>
+        <div class="brand pull-left">
+          <div class="logo">a <strong>PoliChart</strong> interactive</div>
+        </div>
+
+        <div class="social-share pull-right">
+
+          <span class="share-text">Share:</span>
+
+          <a href="#" class="fb-icon"></a>
+
+          <a class="twitter-icon" href="https://twitter.com/intent/tweet?text=What%20does%20John%20Kasich%20need%20to%20do%20to%20win%20the%20Republican%20nomination%3F%20We%20did%20the%20math.%20http%3A%2F%2Fpolichart.com%2Finteractives%2Fkasich-path%20via%20%40PoliChart"></a>
+
+        <a target="_blank" data-social-network='Reddit' data-social-action='Share' data-social-target='http://polichart.com/interactives/kasich-path' class="reddit-icon" href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false"></a>
+
+        </div>
+      </nav>
+    </div>
+    {% endblock %}
+
+    {% block flash_message %}
+        <div class="container-fluid">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+            <div class="container-fluid">
+                <div id='flash_message_container'>
+                    {% for category, msg in messages %}
+                        <div class="alert alert-{{ category }}">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {{ msg }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        {% endwith %}
+        </div>
+    {% endblock %}
+
+    {% block container %}
+
+      <div class="container-fluid">
+        {% block body %}
+
+          <div class="container">
+
+            <section class="intro text-center">
+
+              <div class="kasich-path-logo"><h1>Bern Path</h1></div>
+
+              <div class="intro-copy">
+                <h4>What does John Kasich need to do to win the Republican nomination?</br></br>
+
+                <strong>We did the math.</strong></h4>
+              </div>
+
+              <a href="#scoreboard" class="glyphicon glyphicon-chevron-down more"></a>
+
+            </section>
+
+            <section class="scoreboard" id="scoreboard">
+
+              <div class="card">
+
+                <div class="videoWrapper">
+
+                  <iframe width="420" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen id="video"></iframe>
+
+                </div>
+
+              </div>
+
+            </section>
+
+          </div>
+
+          <div class="row">
+
+            <section class="conclusion">
+
+              <div class="card">
+
+                <p><strong>Updated April 1, 2016</strong></p>
+
+                <p>Share this story:</p>
+
+                <div class="social-share">
+
+                  <a href="#" class="fb-icon"></a>
+                  <a class="twitter-icon" href="https://twitter.com/intent/tweet?text=What%20does%20John%20Kasich%20need%20to%20do%20to%20win%20the%20Republican%20nomination%3F%20We%20did%20the%20math.%20http%3A%2F%2Fpolichart.com%2Finteractives%2Fkasich-path%20via%20%40PoliChart"></a>
+                  <a target="_blank" data-social-network='Reddit' data-social-action='Share' data-social-target='http://polichart.com/interactives/kasich-path' class="reddit-icon" href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false"></a>
+
+                </div>
+
+                <div class="social-follow">
+
+                  <a class="twitter-follow-button" href="https://twitter.com/PoliChart" data-size="small" data-show-count="false">
+                  Follow @PoliChart</a>
+
+                  <div class="fb-like"
+                		data-href="https://www.facebook.com/PoliChart"
+                		data-layout="button"
+                		data-action="like"
+                		data-show-faces="false">
+                	</div>
+
+                </div>
+
+              </div>
+
+            </section>
+
+          </div>
+
+        {% endblock %}
+      </div>
+
+    {% endblock %}
+
+    <div class="container-fluid">
+
+      <div class="row">
+
+        <footer class="text-center">
+
+          <div class="footer-copy">
+
+            <p>This was a <strong>PoliChart</strong> interactive.</p>
+
+            <p><strong>PoliChart</strong> is a new way to look at politics. If you enjoyed this interactive, sign up to be notified when we launch.</p>
+
+            <p><small>(We promise not to spam)</small></p>
+
+          </div>
+
+          <!-- Begin MailChimp Signup Form -->
+          <div id="mc_embed_signup">
+          <form action="//polichart.us13.list-manage.com/subscribe/post?u=07c96f45b0114ef3220bc7dd5&amp;id=d9a6acb080" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
+
+          <div class="mc-field-group">
+          	<!-- <label for="mce-EMAIL">Email Address </label> -->
+          	<input type="email" value="" placeholder="you@example.com"name="EMAIL" class="required email" id="mce-EMAIL">
+          </div>
+             <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_07c96f45b0114ef3220bc7dd5_d9a6acb080" tabindex="-1" value=""></div>
+              <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+              </div>
+              <div id="mce-responses" class="clear">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+              </div>
+          </form>
+          </div>
+          <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+          <!--End mc_embed_signup-->
+
+          <p>Feedback? <strong><a href="mailto:me@chrismabrydesign.com?subject=PoliChart%20Feedback">Let us know.</a></strong></p>
+
+        </footer>
+
+      </div>
+
+    </div>
+
+    {% block js_btm %}
+    <!--
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    -->
+    {% set jquery_path = url_for('static', filename='js/vendor/jquery-1.10.2.min.js') %}
+    <script>window.jQuery || document.write('<script src="{{ jquery_path }}"><\/script>')</script>
+    <script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>-->
+    <script src="{{ url_for('static', filename='js/vendor/bootstrap.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tablesort.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tablesort.date.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tablesort.number.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.smooth-scroll.js') }}"></script>
+    <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+    <script src="{{ url_for('static', filename='js/Chart.min.js') }}"></script>
+
+    <!-- Bar Chart -->
+    <script>
+
+    $(document).ready(function() {
+      $('.more').on('click', function(ev) {
+
+        $("#video")[0].src += "?autoplay=1";
+        ev.preventDefault();
+
+      });
+      });
+
+    </script>
+
+    <script>
+
+    $('.more').smoothScroll();
+
+    var canvas = document.getElementsByClassName("canvas")[1];
+    var body = document.body;
+    var html = document.body;
+    var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+    var ctx = canvas.getContext("2d");
+    // canvas.width = window.innerWidth;
+    canvas.width = body.width;
+    canvas.height = height;
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    function handleResize() {
+      var body = document.body;
+      var w = window.innerWidth;
+      var h = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+      canvas.width = w;
+      canvas.height = h;
+
+      drawPath();
+    };
+
+    function drawPath() {
+
+      var points = [
+        [
+          Math.floor(window.innerWidth - ($('.kasich-path-logo h1').position().left))+0.5,
+          Math.floor($('.kasich-path-logo h1').position().top + $('.kasich-path-logo h1').height())+0.5
+        ],
+        [
+          Math.floor(window.innerWidth - ($('.kasich-path-logo h1').position().left)+100)+0.5,
+          Math.floor($('.kasich-path-logo h1').position().top + $('.kasich-path-logo h1').height())+0.5
+        ],
+        [
+          Math.floor(window.innerWidth - ($('.kasich-path-logo h1').position().left)+100)+0.5,
+          Math.floor($('.more').position().top + $('.more').height()/2)+0.5
+        ],
+        [
+          Math.floor(window.innerWidth/2)+0.5,
+          Math.floor($('.more').position().top + $('.more').height()/2)+0.5
+        ],
+        [
+          Math.floor(window.innerWidth/2)+0.5,
+          Math.floor($('.scoreboard .card').position().top + 200)+0.5
+        ]
+      ]
+
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4]);
+
+      ctx.beginPath();
+      ctx.strokeStyle="#f55b5b";
+      // ctx.moveTo((points[0][0]),(points[0][1]));
+
+      for (var coords in points) {
+        ctx.lineTo(points[coords][0],points[coords][1])
+      }
+
+      ctx.stroke();
+
+    };
+
+    $('.fb-icon').on('click', function () {
+      FB.ui({
+        method: 'share',
+        href: 'http://polichart.com/interactives/kasich-path',
+      }, function(response){
+
+        ga('send', {
+          hitType: 'social',
+          socialNetwork: 'Facebook',
+          socialAction: 'Share',
+          socialTarget: 'http://polichart.com/interactives/kasich-path',
+        });
+
+      });
+    });
+
+    twttr.ready(
+      function (twttr) {
+        twttr.events.bind(
+          'tweet',
+          function (ev) {
+            ga('send', {
+              hitType: 'social',
+              socialNetwork: 'Twitter',
+              socialAction: 'Tweet',
+              socialTarget: 'http://polichart.com/interactives/kasich-path',
+            });
+          }
+        );
+        }
+      );
+
+    </script>
+
+    {% endblock %}
+
+    {% block ga %}
+      {% include "macros/_google_analytics.html" %}
+    {% endblock %}
+</body>
+</html>

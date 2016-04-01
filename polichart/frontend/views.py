@@ -77,3 +77,7 @@ def index():
 @frontend.route('/interactives/bern-path')
 def bern():
     return render_template('layouts/bern-path.html')
+
+@frontend.route('/interactives/kasich-path')
+def kasich():
+    return render_template('kasich.html')
