@@ -490,6 +490,10 @@ footer .social-share .reddit-icon {
     background-color: white;
 }
 
+.bern-path .disclaimer {
+  padding-top: 20px;
+}
+
 .bern-path section, .bern-path footer {
     padding: 50px 0;
 }
