@@ -386,6 +386,10 @@ footer .social-share .reddit-icon {
   font-size: 20px;
 }
 
+.bern-path .score-totals .col-xs-4:nth-child(3) {
+  color: #317bbf;
+}
+
 .bern-path .map {
   height: 500px;
   background: url("../img/map.svg") no-repeat;
@@ -580,6 +584,7 @@ footer .social-share .reddit-icon {
     position: absolute;
     right: initial;
     font-size: 11px;
+    text-align: left;
   }
 
   .bern-path .score-totals {
